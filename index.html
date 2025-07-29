@@ -5,28 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Password Generator</title>
     <link rel="icon" type="image/x-icon" href="Assets/padlock.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;600&display=swap">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <!-- container -->
     <div class="container">
-      <div class="card">
+      <!-- <div class="card"> -->
         <!-- card-header -->
-        <div class="card-header">
+        <!-- <div class="card-header"> -->
           <h1>Password Generator</h1>
-        </div>
+        <!-- </div> -->
         <!-- card-body -->
 
         <div class="copy-container">
             <!-- password display -->
-            <div class="password-display">
+            <!-- <div class="password-display"> -->
                 <input type="text" id="password" placeholder="Password" readonly  data-passwordDisplay/>
-          <div>
+          <!-- <div> -->
             <!-- copy button -->
             <button id="copyButton">
-                <span data-copymsg></span>
+                <span class="tooltip" data-copymsg></span>
               <img src="Assets/copy.svg" alt="Copy" width="15" height="15" data-copyImage />
             </button>
-          </div>
+          <!-- </div> -->
         </div>
         <!-- main-card -->
         <div class="main-card">
@@ -36,11 +40,11 @@
             <p data-lengthcontainer>0</p>
           </div>
           <!-- length-slider -->
-          <div class="slidercontainer">
-            <input type="range" min="1" max="20" value="10" step="1" class="slider" id="myRange" data-lengthslider/>
-          </div>
+          <!-- <div class="slidercontainer"> -->
+            <input type="range" min="1" max="20" class="slider" step="1" data-lengthslider/>
+]          <!-- </div> -->
           <!-- checkboxes -->
-          <div class="checkboxes">
+          <!-- <div class="checkboxes"> -->
             <div class="checkbox">
               <input type="checkbox" id="uppercase" />
               <label for="uppercase">Include Uppercase Letters</label>
@@ -57,19 +61,20 @@
               <input type="checkbox" id="symbols" />
               <label for="symbols">Include Symbols</label>
             </div>
-          </div>
+          <!-- </div> -->
             <!-- strength indicator -->
           <div class="strength">
-            <h2>Strength</h2>
-            <div data-strengthindicator></div>
-          </div>
+            <p>Strength</p>
+            <div class="circle" data-strengthindicator></div>
+          </div >
           <!-- generate button -->
-          <div class="generate-btn">
+          <!-- <div class="generate-btn"> -->
             <button id="generateButton">Generate Password</button>
-          </div>
-        </div>
+          <!-- </div> -->
+        <!-- </div> -->
       </div>
-    </div>
+    <!-- </div> -->
+  </div>
     <script src="script.js"></script>
   </body>
 </html>

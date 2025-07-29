@@ -19,15 +19,23 @@ let password = "";
 let passwordLength = 10;
 let checkCount = 0;
 
+// set strenth circle color to grey
+setIndicator("#ccc");
+
 handleSlider();
 
 // set password length and display it
 function handleSlider() {
   inputSlider.value = passwordLength;
   lengthDisplay.innerText = passwordLength;
+
+  const min = inputSlider.min;
+  const max = inputSlider.max;
+  inputSlider.style.backgroundSize =
+    ((passwordLength - min)*100/(max - min)) + "% 100%"
 }
 
-// set the color of the indicator 
+// set the color of the indicator
 function setIndicator(color) {
   strengthIndicator.style.backgroundColor = color;
   strengthIndicator.style.shadow = "0 0 15px white";
@@ -56,19 +64,19 @@ function generateSymbols() {
 }
 
 function calculateStrength() {
-  // initially consider all the checkbox as false 
+  // initially consider all the checkbox as false
   let hasUpper = false;
   let hasLower = false;
   let hasInteger = false;
   let hasSymbol = false;
 
-  // now check for the checked checkbox 
+  // now check for the checked checkbox
   if (uppercaseCheckbox.checked) hasUpper = true;
   if (lowercaseCheckbox.checked) hasLower = true;
   if (symbolsCheckbox.checked) hasSymbol = true;
   if (numbersCheckbox.checked) hasInteger = true;
 
-  // apply condition to set the strength of the password 
+  // apply condition to set the strength of the password
   if (
     hasUpper &&
     hasLower &&
@@ -87,9 +95,8 @@ function calculateStrength() {
   }
 }
 
-
 async function copyContent() {
-  // the await keyword make it wait until the password is copied to clipboard and then copied is shown 
+  // the await keyword make it wait until the password is copied to clipboard and then copied is shown
   try {
     await navigator.clipboard.writeText(passwordDisplay.value);
     copyMsg.innerText = "copied";
@@ -107,8 +114,8 @@ async function copyContent() {
 function shufflePassword(array) {
   // Fisher Yates Method
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = array[i];
+    const j = Math.floor(Math.random() * (i + 1)); // finding a random j between 0 and i+1(exclusive)
+    const temp = array[i]; // swaping the random element with array[i]
     array[i] = array[j];
     array[j] = temp;
   }
@@ -117,7 +124,7 @@ function shufflePassword(array) {
   return str;
 }
 
-// count no of checkboxes ticked 
+// count no of checkboxes ticked
 function handleCheckBoxChange() {
   checkCount = 0;
   allCheckboxes.forEach((checkbox) => {
@@ -138,8 +145,8 @@ allCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", handleCheckBoxChange);
 });
 
-// here e is event object and contains details about what happened to the target element, 
-// here changes in slider value is stored in passwordlength 
+// here e is event object and contains details about what happened to the target element,
+// here changes in slider value is stored in passwordlength
 inputSlider.addEventListener("input", (e) => {
   passwordLength = e.target.value;
   handleSlider();
@@ -163,7 +170,7 @@ generateBtn.addEventListener("click", () => {
   // remove old password
   password = "";
 
-  // array to store functions that generate different letters,numbers and symbols 
+  // array to store functions that generate different letters,numbers and symbols
   let funcArr = [];
 
   if (uppercaseCheckbox.checked) {
@@ -188,7 +195,7 @@ generateBtn.addEventListener("click", () => {
   for (let i = 0; i < passwordLength - funcArr.length; i++) {
     let randIndex = getRndInteger(0, funcArr.length);
     password += funcArr[randIndex]();
-  } 
+  }
   // shuffle the password generated
   password = shufflePassword(Array.from(password));
 
